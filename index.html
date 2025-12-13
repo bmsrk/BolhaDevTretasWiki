@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BolhaDev Wiki // SYSTEM_FAILURE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Space Grotesk', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              'acid-green': '#ccff00',
+              'acid-purple': '#b026ff',
+              'void-black': '#050505',
+              'raw-white': '#f0f0f0',
+              'error-red': '#ff003c',
+            },
+            boxShadow: {
+              'hard': '4px 4px 0px 0px #f0f0f0',
+              'hard-green': '4px 4px 0px 0px #ccff00',
+              'hard-purple': '4px 4px 0px 0px #b026ff',
+              'hard-red': '4px 4px 0px 0px #ff003c',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #f0f0f0;
+        overflow-x: hidden;
+      }
+      
+      ::selection {
+        background: #ccff00;
+        color: #000;
+      }
+
+      /* CRT Scanline Effect */
+      .crt::before {
+        content: " ";
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+        z-index: 50;
+        background-size: 100% 2px, 3px 100%;
+        pointer-events: none;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #050505;
+        border-left: 1px solid #333;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border: 1px solid #ccff00;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ccff00;
+      }
+
+      /* Glitch Animation */
+      @keyframes glitch {
+        0% { transform: translate(0) }
+        20% { transform: translate(-2px, 2px) }
+        40% { transform: translate(-2px, -2px) }
+        60% { transform: translate(2px, 2px) }
+        80% { transform: translate(2px, -2px) }
+        100% { transform: translate(0) }
+      }
+      
+      .hover-glitch:hover {
+        animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+      }
+
+      /* Markdown specific styles */
+      .prose blockquote {
+        border-left-color: #ccff00;
+        background-color: rgba(204, 255, 0, 0.05);
+        font-style: italic;
+        padding: 1rem;
+      }
+      .prose code {
+        color: #ccff00;
+        background: #1a1a1a;
+        padding: 0.2em 0.4em;
+        border-radius: 0;
+      }
+      .prose pre {
+        background: #111;
+        border: 1px solid #333;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "react-markdown": "https://esm.sh/react-markdown@9.0.1",
+    "remark-gfm": "https://esm.sh/remark-gfm@4.0.0"
+  }
+}
+</script>
+</head>
+  <body class="crt">
+    <div id="root"></div>
+  </body>
+</html>
