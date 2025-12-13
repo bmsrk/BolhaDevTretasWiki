@@ -91,10 +91,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) =
               <Zap size={12} className="fill-current" />
               <span className="font-bold uppercase">System Diagnostic</span>
             </div>
-            <p>> CAFFEINE_LEVEL: CRITICAL</p>
-            <p>> DRAMA_DETECTOR: <span className="text-red-500 bg-red-900/30 px-1 animate-pulse">OVER 9000</span></p>
-            <p>> DEPLOY: GITHUB_PAGES</p>
-            <p>> VIEW: {currentView}</p>
+            <p>{'>'} CAFFEINE_LEVEL: CRITICAL</p>
+            <p>{'>'} DRAMA_DETECTOR: <span className="text-red-500 bg-red-900/30 px-1 animate-pulse">OVER 9000</span></p>
+            <p>{'>'} DEPLOY: GITHUB_PAGES</p>
+            <p>{'>'} VIEW: {currentView}</p>
           </div>
         </div>
       </aside>
