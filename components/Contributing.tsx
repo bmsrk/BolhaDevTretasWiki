@@ -126,7 +126,7 @@ export const Contributing: React.FC = () => {
                 <div className="text-white">- [Discussão no Reddit](URL)</div>
               </div>
               <p className="font-mono text-xs text-gray-700 mt-2">
-                💡 Dica: Veja os exemplos no "README.md" (modo local) para referência.
+                💡 Dica: Veja os posts de exemplo no banco de dados local (menu "README.md") para ver a estrutura completa.
               </p>
             </div>
 
@@ -248,8 +248,8 @@ export const Contributing: React.FC = () => {
             <div className="bg-acid-green/10 border-2 border-acid-green p-6">
                  <h4 className="text-acid-green font-bold font-mono mb-2 uppercase">💡 Dica Pro</h4>
                  <p className="text-gray-300 font-mono text-sm">
-                    Olhe os exemplos no modo <strong className="text-white">README.md</strong> (local) 
-                    para ver a estrutura ideal de um post. Use-os como template!
+                    Quer ver exemplos prontos? Clique em <strong className="text-white">README.md</strong> no menu 
+                    para ver os posts do banco de dados local. Eles mostram a estrutura ideal que sua issue deve ter!
                  </p>
             </div>
 
