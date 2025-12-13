@@ -21,10 +21,3 @@ export interface WikiEntry {
 }
 
 export type ViewState = 'LANDING' | 'HOME' | 'LIVE' | 'CONTRIBUTING' | 'WIKI_ENTRY' | 'ABOUT';
-
-export interface ChatMessage {
-  id: string;
-  role: 'user' | 'model';
-  text: string;
-  timestamp: number;
-}

@@ -35,7 +35,7 @@ export const About: React.FC = () => {
                 Nasceu da necessidade urgente de catalogar a insanidade coletiva da nossa área antes que ela se perca no feed infinito das redes sociais. Se você não documenta o erro, você vira Tech Lead dele.
               </p>
               <p className="border-l-4 border-acid-green pl-4 italic text-white">
-                "Quem não conhece a história do left-pad está condenado a repeti-la com AI."
+                "Quem não conhece a história do left-pad está condenado a repeti-la."
               </p>
               <p>
                 Este é um projeto Open Source, estático e brutalista. Lemos diretamente do GitHub Issues. Sem banco de dados, sem backend, apenas vibes ruins e HTML cru.
