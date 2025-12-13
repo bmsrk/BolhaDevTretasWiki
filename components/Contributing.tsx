@@ -126,7 +126,7 @@ export const Contributing: React.FC = () => {
                 <div className="text-white">- [Discussão no Reddit](URL)</div>
               </div>
               <p className="font-mono text-xs text-gray-700 mt-2">
-                💡 Dica: Veja os posts de exemplo no banco de dados local (menu "README.md") para ver a estrutura completa.
+                💡 Dica: Veja os posts de exemplo clicando em "README.md" no menu (banco de dados local) para ver a estrutura completa.
               </p>
             </div>
 
