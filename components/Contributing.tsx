@@ -62,7 +62,7 @@ export const Contributing: React.FC = () => {
                 rel="noreferrer"
                 className="mt-8 block w-full bg-acid-green text-black font-black uppercase text-center py-4 border-2 border-black hover:bg-black hover:text-white hover:shadow-[4px_4px_0px_0px_#ccff00] transition-all"
             >
-                Abrir Issue Agora ->
+                Abrir Issue Agora {'->'}
             </a>
         </div>
 
