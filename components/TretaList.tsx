@@ -108,7 +108,7 @@ export const TretaList: React.FC<TretaListProps> = ({
               A comunidade está codando em vez de brigar? Impossível.<br/>
               Verifique se o repo tem issues com a label <span className="text-acid-green bg-gray-800 px-1">treta</span>.
             </p>
-            <button onClick={() => window.open('https://github.com/bolhadev/wiki/issues', '_blank')} className="text-acid-green hover:underline">
+            <button onClick={() => window.open('https://github.com/bmsrk/BolhaDevTretasWiki/issues', '_blank')} className="text-acid-green hover:underline">
               Checar GitHub {'->'}
             </button>
         </div>

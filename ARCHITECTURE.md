@@ -5,13 +5,10 @@ BolhaDev Wiki is a satirical, brutalist-style web application designed to archiv
 1.  **Local/Mock Mode**: Serves static JSON data for demonstration and preservation of "classic" hits.
 2.  **Live Mode**: Fetches real-time issues from a GitHub repository, treating them as wiki entries.
 
-The application also features an AI integration ("O Arquivista") powered by Google's Gemini API to generate content or chat with users.
-
 ## 2. Technical Stack
-*   **Core**: React 19 (via ESM/importmap, no bundler step required for deployment on simple static hosts).
-*   **Styling**: Tailwind CSS (CDN) with a custom "Cyber-Brutalist" configuration defined in `index.html`.
+*   **Core**: React 19 with Vite build tool.
+*   **Styling**: Tailwind CSS with a custom "Cyber-Brutalist" configuration.
 *   **Icons**: Lucide React.
-*   **AI**: `@google/genai` SDK (Gemini 2.5 Flash).
 *   **Markdown**: `react-markdown` + `remark-gfm` for rendering wiki content.
 
 ## 3. Project Structure
@@ -31,19 +28,13 @@ The application also features an AI integration ("O Arquivista") powered by Goog
 *   **`services/githubService.ts`**:
     *   `fetchTretasFromGitHub()`: Calls GitHub API to get issues with label `treta`.
     *   `getStaticTretas()`: Returns the local mock data.
-*   **`services/geminiService.ts`**: Interface for the AI Persona "O Arquivista".
 *   **`data/tretas.ts`**: The "Local Database". A hardcoded array of `WikiEntry` objects.
 
 ## 4. Key Design Decisions (SoC)
 *   **Separation of Data Source**: The app treats Local and GitHub data identically via the `WikiEntry` interface. `TretaList` doesn't care where data comes from, only that it has a `source` tag ('LOCAL' | 'GITHUB') for UI hints.
 *   **Layout Abstraction**: `App.tsx` does not handle margin/padding logic. `Layout.tsx` ensures the sidebar and main content area interact correctly on mobile/desktop.
-*   **CSS-in-HTML**: Tailwind config is injected in `index.html` to allow runtime configuration without a build step, fitting the "raw" aesthetic.
 
 ## 5. Setup & Configuration
-
-### API Keys
-The application requires a Google Gemini API Key. This is accessed via `process.env.API_KEY`.
-*   Ensure the environment where this runs injects this variable.
 
 ### Changing the GitHub Source
 To point the "Live Feed" to a different repository:
@@ -54,4 +45,3 @@ To point the "Live Feed" to a different repository:
 ## 6. Future Improvements (Roadmap)
 *   [ ] Implement pagination for GitHub issues (currently fetches first page only).
 *   [ ] Add "Like" persistence (currently read-only from GitHub reactions).
-*   [ ] Enhance "Archivist" persona with RAG (Retrieval-Augmented Generation) based on the current wiki content.

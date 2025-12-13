@@ -4,8 +4,8 @@ import { STATIC_TRETAS } from "../data/tretas";
 
 // CONFIGURATION
 // To make this work for your own repo, change these values!
-const REPO_OWNER = 'bolhadev'; 
-const REPO_NAME = 'wiki'; 
+const REPO_OWNER = 'bmsrk'; 
+const REPO_NAME = 'BolhaDevTretasWiki'; 
 
 interface GitHubIssue {
   number: number;

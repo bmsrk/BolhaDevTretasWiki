@@ -57,7 +57,7 @@ export const Contributing: React.FC = () => {
             </ol>
 
             <a 
-                href="https://github.com/bolhadev/wiki/issues/new" 
+                href="https://github.com/bmsrk/BolhaDevTretasWiki/issues/new" 
                 target="_blank" 
                 rel="noreferrer"
                 className="mt-8 block w-full bg-acid-green text-black font-black uppercase text-center py-4 border-2 border-black hover:bg-black hover:text-white hover:shadow-[4px_4px_0px_0px_#ccff00] transition-all"
@@ -82,7 +82,7 @@ export const Contributing: React.FC = () => {
             <div className="bg-void-black border-2 border-gray-700 p-6">
                  <h4 className="text-acid-green font-bold font-mono mb-2 uppercase">// Como funciona a mágica?</h4>
                  <div className="bg-black p-4 border border-gray-800 font-mono text-xs text-green-500 overflow-x-auto">
-                    <p>GET https://api.github.com/repos/bolhadev/wiki/issues</p>
+                    <p>GET https://api.github.com/repos/bmsrk/BolhaDevTretasWiki/issues</p>
                     <p className="text-gray-500">...fetching</p>
                     <p className="text-gray-500">...parsing markdown</p>
                     <p className="text-gray-500">...injecting sarcasm</p>
