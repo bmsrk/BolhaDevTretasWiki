@@ -7,6 +7,13 @@ export enum TretaSeverity {
   NUCLEAR = 'Rewrite completo em Rust'
 }
 
+export interface Comment {
+  id: string;
+  author: string;
+  date: string;
+  content: string;
+}
+
 export interface WikiEntry {
   id: string;
   title: string;
@@ -18,6 +25,7 @@ export interface WikiEntry {
   likes: number;
   prLink?: string;
   source: 'LOCAL' | 'GITHUB';
+  comments?: Comment[];
 }
 
 export type ViewState = 'LANDING' | 'HOME' | 'LIVE' | 'CONTRIBUTING' | 'WIKI_ENTRY' | 'ABOUT';
