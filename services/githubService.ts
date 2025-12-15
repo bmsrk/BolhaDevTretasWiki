@@ -42,6 +42,7 @@ export const getStaticTretas = (): WikiEntry[] => {
 export const fetchTretasFromGitHub = async (): Promise<WikiEntry[]> => {
   try {
     // Fetch all open issues (no label filter)
+    // Note: Only fetches first 100 issues. Pagination not implemented yet.
     const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues?state=open&per_page=100`);
     
     if (!response.ok) {
@@ -53,13 +54,26 @@ export const fetchTretasFromGitHub = async (): Promise<WikiEntry[]> => {
     // Filter out pull requests (GitHub API returns PRs in issues endpoint)
     const actualIssues = issues.filter(issue => !issue.pull_request);
 
-    // Fetch comments for all issues in parallel
-    const issuesWithComments = await Promise.all(
-      actualIssues.map(async (issue) => {
-        const comments = await fetchCommentsForIssue(issue.number);
-        return { issue, comments };
-      })
-    );
+    // Fetch comments for all issues with rate limit protection
+    // Process in smaller batches to avoid overwhelming the API
+    const batchSize = 5;
+    const issuesWithComments = [];
+    
+    for (let i = 0; i < actualIssues.length; i += batchSize) {
+      const batch = actualIssues.slice(i, i + batchSize);
+      const batchResults = await Promise.all(
+        batch.map(async (issue) => {
+          const comments = await fetchCommentsForIssue(issue.number);
+          return { issue, comments };
+        })
+      );
+      issuesWithComments.push(...batchResults);
+      
+      // Small delay between batches to be respectful of rate limits
+      if (i + batchSize < actualIssues.length) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+    }
 
     return issuesWithComments.map(({ issue, comments }) => {
       // Determine severity from labels or default to MEDIUM

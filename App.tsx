@@ -132,7 +132,7 @@ const App: React.FC = () => {
                      Thread ({selectedEntry.comments.length} {selectedEntry.comments.length === 1 ? 'comentário' : 'comentários'})
                    </h2>
                    <div className="space-y-6">
-                     {selectedEntry.comments.map((comment, index) => (
+                     {selectedEntry.comments.map((comment) => (
                        <div key={comment.id} className="border-l-4 border-acid-green pl-6 py-4 bg-gray-900/30">
                          <div className="flex items-center gap-4 text-sm font-mono text-gray-400 mb-4">
                            <span className="text-white font-bold">@{comment.author}</span>
