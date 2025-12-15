@@ -15,7 +15,7 @@ import { ArrowLeft, Tag, Github, Radio, Database, MessageSquare } from 'lucide-r
 
 const App: React.FC = () => {
   // Navigation State
-  const [view, setView] = useState<ViewState>('LANDING');
+  const [view, setView] = useState<ViewState>('HOME');
   const [selectedEntry, setSelectedEntry] = useState<WikiEntry | null>(null);
 
   // Data State
