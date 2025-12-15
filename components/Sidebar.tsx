@@ -16,6 +16,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentView, onChangeView }) =
     { id: 'LIVE', label: './LIVE_FEED.log', icon: Radio, desc: 'GitHub Stream' },
     { id: 'CONTRIBUTING', label: './CONTRIBUTING.sh', icon: Share2, desc: 'Inject Chaos' },
     { id: 'ABOUT', label: './WHOAMI.exe', icon: Skull, desc: 'Manifesto' },
+    { id: 'LANDING', label: './BOOT.sys', icon: Terminal, desc: 'System Boot' },
   ];
 
   const handleNavClick = (view: ViewState) => {
