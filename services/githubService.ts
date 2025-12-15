@@ -1,5 +1,5 @@
 
-import { WikiEntry, TretaSeverity } from "../types";
+import { WikiEntry, TretaSeverity, Comment } from "../types";
 import { STATIC_TRETAS } from "../data/tretas";
 
 // CONFIGURATION
@@ -22,7 +22,17 @@ interface GitHubIssue {
     '+1': number;
     'rocket': number;
     'eyes': number;
-  }
+  };
+  pull_request?: any;
+}
+
+interface GitHubComment {
+  id: number;
+  user: {
+    login: string;
+  };
+  created_at: string;
+  body: string;
 }
 
 export const getStaticTretas = (): WikiEntry[] => {
@@ -31,7 +41,8 @@ export const getStaticTretas = (): WikiEntry[] => {
 
 export const fetchTretasFromGitHub = async (): Promise<WikiEntry[]> => {
   try {
-    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues?state=open&labels=treta`);
+    // Fetch all open issues (no label filter)
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues?state=open&per_page=100`);
     
     if (!response.ok) {
       throw new Error("GitHub API rate limit or Repo not found");
@@ -39,8 +50,19 @@ export const fetchTretasFromGitHub = async (): Promise<WikiEntry[]> => {
 
     const issues: GitHubIssue[] = await response.json();
 
-    return issues.map(issue => {
-      // Determine severity from labels or random guess if missing
+    // Filter out pull requests (GitHub API returns PRs in issues endpoint)
+    const actualIssues = issues.filter(issue => !issue.pull_request);
+
+    // Fetch comments for all issues in parallel
+    const issuesWithComments = await Promise.all(
+      actualIssues.map(async (issue) => {
+        const comments = await fetchCommentsForIssue(issue.number);
+        return { issue, comments };
+      })
+    );
+
+    return issuesWithComments.map(({ issue, comments }) => {
+      // Determine severity from labels or default to MEDIUM
       const severityLabel = issue.labels.find(l => l.name.startsWith('severity:'))?.name.split(':')[1];
       let severity = TretaSeverity.MEDIUM;
       
@@ -65,12 +87,36 @@ export const fetchTretasFromGitHub = async (): Promise<WikiEntry[]> => {
         tags: tags.length > 0 ? tags : ['uncategorized'],
         likes: (issue.reactions['+1'] + issue.reactions['rocket'] + issue.reactions['eyes']),
         prLink: `https://github.com/${REPO_OWNER}/${REPO_NAME}/issues/${issue.number}`,
-        source: 'GITHUB'
+        source: 'GITHUB',
+        comments: comments
       };
     });
 
   } catch (error) {
     console.warn("Falha ao buscar do GitHub", error);
+    return [];
+  }
+};
+
+const fetchCommentsForIssue = async (issueNumber: number): Promise<Comment[]> => {
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/issues/${issueNumber}/comments`);
+    
+    if (!response.ok) {
+      console.warn(`Failed to fetch comments for issue ${issueNumber}`);
+      return [];
+    }
+
+    const githubComments: GitHubComment[] = await response.json();
+
+    return githubComments.map(comment => ({
+      id: comment.id.toString(),
+      author: comment.user.login,
+      date: comment.created_at.split('T')[0],
+      content: comment.body
+    }));
+  } catch (error) {
+    console.warn(`Error fetching comments for issue ${issueNumber}`, error);
     return [];
   }
 };

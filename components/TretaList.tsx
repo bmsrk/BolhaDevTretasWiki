@@ -106,7 +106,7 @@ export const TretaList: React.FC<TretaListProps> = ({
             <h3 className="text-xl text-white font-bold">NENHUM SINAL DE VIDA DETECTADO</h3>
             <p className="text-gray-400 text-sm">
               A comunidade está codando em vez de brigar? Impossível.<br/>
-              Verifique se o repo tem issues com a label <span className="text-acid-green bg-gray-800 px-1">treta</span>.
+              Verifique se o repo tem issues abertas.
             </p>
             <button onClick={() => window.open('https://github.com/bmsrk/BolhaDevTretasWiki/issues', '_blank')} className="text-acid-green hover:underline">
               Checar GitHub {'->'}

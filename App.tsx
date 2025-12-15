@@ -11,7 +11,7 @@ import { About } from './components/About';
 import { MarkdownRenderer } from './components/MarkdownRenderer';
 
 // Icons
-import { ArrowLeft, Tag, Github, Radio, Database } from 'lucide-react';
+import { ArrowLeft, Tag, Github, Radio, Database, MessageSquare } from 'lucide-react';
 
 const App: React.FC = () => {
   // Navigation State
@@ -122,6 +122,30 @@ const App: React.FC = () => {
              <div className="p-8 md:p-12">
                 <MarkdownRenderer content={selectedEntry.content} />
              </div>
+
+             {/* Comments Section */}
+             {selectedEntry.comments && selectedEntry.comments.length > 0 && (
+               <div className="border-t-2 border-white bg-[#0a0a0a]">
+                 <div className="p-8 md:p-12">
+                   <h2 className="text-2xl font-black text-white mb-6 uppercase tracking-tighter flex items-center gap-3">
+                     <MessageSquare size={24} className="text-acid-green" />
+                     Thread ({selectedEntry.comments.length} {selectedEntry.comments.length === 1 ? 'comentário' : 'comentários'})
+                   </h2>
+                   <div className="space-y-6">
+                     {selectedEntry.comments.map((comment, index) => (
+                       <div key={comment.id} className="border-l-4 border-acid-green pl-6 py-4 bg-gray-900/30">
+                         <div className="flex items-center gap-4 text-sm font-mono text-gray-400 mb-4">
+                           <span className="text-white font-bold">@{comment.author}</span>
+                           <span className="text-gray-500">//</span>
+                           <span>{comment.date}</span>
+                         </div>
+                         <MarkdownRenderer content={comment.content} />
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+               </div>
+             )}
 
              <div className="bg-gray-900 p-4 border-t-2 border-white flex justify-between items-center text-xs font-mono text-acid-green">
                 <div className="flex gap-4">

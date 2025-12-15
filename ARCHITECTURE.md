@@ -26,7 +26,7 @@ BolhaDev Wiki is a satirical, brutalist-style web application designed to archiv
 
 ### Services & Data
 *   **`services/githubService.ts`**:
-    *   `fetchTretasFromGitHub()`: Calls GitHub API to get issues with label `treta`.
+    *   `fetchTretasFromGitHub()`: Calls GitHub API to get all open issues (excludes pull requests) and their comments.
     *   `getStaticTretas()`: Returns the local mock data.
 *   **`data/tretas.ts`**: The "Local Database". A hardcoded array of `WikiEntry` objects.
 
@@ -40,7 +40,7 @@ BolhaDev Wiki is a satirical, brutalist-style web application designed to archiv
 To point the "Live Feed" to a different repository:
 1.  Open `services/githubService.ts`.
 2.  Modify `REPO_OWNER` and `REPO_NAME` constants.
-3.  Ensure the target repo has Issues enabled and uses the label `treta`.
+3.  Ensure the target repo has Issues enabled.
 
 ## 6. Future Improvements (Roadmap)
 *   [ ] Implement pagination for GitHub issues (currently fetches first page only).
